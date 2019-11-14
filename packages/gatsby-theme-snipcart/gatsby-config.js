@@ -1,6 +1,7 @@
 
 module.exports = (options) => {
-    const {} = options;
+    const {snipCart_API_KEY} = options;
+    console.log('Your API_KEY: ', snipcart_API_KEY);
 
     return {
         siteMetadata: {},
