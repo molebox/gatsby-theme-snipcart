@@ -30,6 +30,7 @@ const Button = styled.button`
  * @param {string} itemUrl - The URL of the product, this must be the URL where the buy button will be located.
  * @param {string} itemPath - The path/page of the product. Added to the itemUrl
  * @param {boolean} isStackable - When you set this attribute to false, adding the same product to the cart will result in two distinct items in the cart, instead of simply increasing the quantity.
+ * @param {boolean} isTaxIncluded - This will let snipcart know that the taxes are already included in the product price.
  * @param {*} customFieldProps - Used for adding custom fields to the cart -
  * @example See README for more detailed options. Here are a few:
  *
@@ -48,7 +49,7 @@ const Button = styled.button`
  *  data-item-categories="cat1, cat2, cat3"
  *
  */
-const BuyButton = ({
+export default ({
   itemId,
   text,
   itemPrice,
@@ -58,6 +59,7 @@ const BuyButton = ({
   itemUrl,
   itemPath,
   isStackable,
+  isTaxIncluded,
   ...customFieldProps
 }) => {
   return (
@@ -81,11 +83,10 @@ const BuyButton = ({
       data-item-description={itemDescription}
       data-item-url={itemUrl + itemPath}
       data-item-stackabl={isStackable}
+      data-item-has-taxes-included={isTaxIncluded}
       {...customFieldProps}
     >
       {text}
     </Button>
   );
 };
-
-export default BuyButton;
