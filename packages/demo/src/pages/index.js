@@ -1,30 +1,31 @@
 /** @jsx jsx */
-
-import { jsx } from "@emotion/core";
+import { jsx } from "theme-ui";
 import styled from "@emotion/styled";
-import { BuyButton, Cart } from "gatsby-theme-snipcart";
+import { Cart } from "gatsby-theme-snipcart";
 import Layout from "../components/Layout";
+import { useStaticQuery } from "gatsby";
+import Img from "gatsby-image";
 
 const Container = styled.div`
-  height: 95vh;
-  width: 100vw;
-  background: #d0d4da;
+  height: 110vh;
+  // width: 100%;
+  background: #262626;
 `;
 
 const Header = styled.header`
-  height: 5vh;
+  height: 10vh;
   width: 100vw;
-  background: #b10f2e;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin: 1.5em;
 `;
 
 const Main = styled.section`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  // grid-template-rows: auto 1fr;
+  grid-gap: 2em;
+  margin: 3em;
 `;
 
 const Title = styled.h1`
@@ -33,10 +34,8 @@ const Title = styled.h1`
 `;
 
 const ProductCard = styled.div`
-  background: #011638;
-  width: 400px;
-  height: 600px;
   padding: 1.5em;
+  height: fit-content;
 
   display: flex;
   justify-content: center;
@@ -47,11 +46,9 @@ const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
   align-self: center;
-
-  border: 1px solid white;
 `;
 
-const Image = styled.img`
+const Image = styled(Img)`
   max-width: 100%;
   max-height: 100%;
 
@@ -62,37 +59,74 @@ const Image = styled.img`
 
 const Description = styled.h2`
   color: #d0d4da;
-  font-size: 1.8em;
+  font-size: 1.3em;
+  margin: 1em;
+
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 const Price = styled.h3`
   color: #d0d4da;
-  font-size: 1.5em;
+  font-size: 1em;
+  margin: 0.7em;
 `;
 
 const Index = () => {
+  const products = useStaticQuery(query);
+  const productsList = products.allSanityProduct.edges;
+
   return (
     <Layout>
       <Container>
-        <Header>
+        <Header
+          sx={{
+            backgroundColor: "lightGrey",
+            fontFamily: "heading",
+            fontWeight: "body",
+            color: "black",
+            letterSpacing: "text"
+          }}
+        >
           <Title>Hungry Bear Snipcart Shop</Title>
           <Cart />
         </Header>
         <Main>
-          <ProductCard>
-            <ImageContainer>
-              <Image />
-            </ImageContainer>
-            <Description>
-              Prow scuttle parrel provost Sail ho shrouds spirits boom
-              mizzenmast yardarm. Pinnace holystone mizzenmast quarter crow's
-              nest nipperkin grog yardarm hempen halter furl. Swab barque
-              interloper chantey doubloon starboard grog black jack gangway
-              rutters.
-            </Description>
-            <Price>$25</Price>
-            <BuyButton />
-          </ProductCard>
+          {productsList.map(({ node }) => (
+            <ProductCard
+              sx={{
+                backgroundColor: "white"
+              }}
+            >
+              <Description
+                sx={{
+                  fontFamily: "heading",
+                  fontWeight: "body",
+                  color: "black"
+                }}
+              >
+                {node.blurb.en}
+                <Price
+                  sx={{
+                    fontFamily: "heading",
+                    fontWeight: "body",
+                    color: "black"
+                  }}
+                >
+                  ${node.defaultProductVariant.price}
+                </Price>
+              </Description>
+              <ImageContainer>
+                <Image
+                  fluid={node.defaultProductVariant.images[0].asset.fluid}
+                  alt={node.defaultProductVariant.title}
+                />
+              </ImageContainer>
+              {/* <BuyButton /> */}
+            </ProductCard>
+          ))}
         </Main>
       </Container>
     </Layout>
@@ -100,3 +134,33 @@ const Index = () => {
 };
 
 export default Index;
+
+export const query = graphql`
+  query SnipcartSanityQuery {
+    allSanityProduct {
+      edges {
+        node {
+          id
+          slug {
+            current
+          }
+          title
+          blurb {
+            en
+          }
+          defaultProductVariant {
+            price
+            title
+            images {
+              asset {
+                fluid {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

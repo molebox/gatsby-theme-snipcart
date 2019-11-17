@@ -1,10 +1,8 @@
 
 module.exports = (options) => {
     const {SNIPCART_API_KEY} = options;
-    console.log('Your API_KEY: ', SNIPCART_API_KEY);
 
     return {
-        siteMetadata: {},
         plugins: [
             {
                 resolve: 'gatsby-plugin-google-fonts',
@@ -18,6 +16,7 @@ module.exports = (options) => {
                 }
             },
             'gatsby-plugin-emotion',
+            'gatsby-plugin-theme-ui'
         ]
     }
 }

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx } from "../context";
+import { jsx } from "theme-ui";
 import styled from "@emotion/styled";
 
 const Button = styled.button`
@@ -82,7 +82,7 @@ export default ({
       data-item-name={itemTitle}
       data-item-description={itemDescription}
       data-item-url={itemUrl + itemPath}
-      data-item-stackabl={isStackable}
+      data-item-stackable={isStackable}
       data-item-has-taxes-included={isTaxIncluded}
       {...customFieldProps}
     >

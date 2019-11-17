@@ -27,12 +27,14 @@
     "@mdx-js/react": "^1.5.1",
     "gatsby-plugin-emotion": "^4.1.14",
     "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-plugin-theme-ui": "^0.2.43",
     "isolated-theme-ui": "^1.0.1",
     "react-helmet": "^5.2.1",
-    "theme-ui": "^0.2.46"
+    "react-icons": "^3.8.0",
+    "theme-ui": "^0.2.49"
   },
   "peerDependencies": {
-    "gatsby": "^2.17.7",
+    "gatsby": "^2.17.15",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"
   },

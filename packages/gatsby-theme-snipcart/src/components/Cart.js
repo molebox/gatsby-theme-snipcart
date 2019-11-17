@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx } from "../context";
+import { jsx } from "theme-ui";
 import styled from "@emotion/styled";
-import CartSvg from "../assets/shopping-cart.svg";
+import { TiShoppingCart } from "react-icons/ti";
 
 const CartButton = styled.button`
   background: none;
@@ -17,9 +17,20 @@ const CartButton = styled.button`
   -ms-user-select: none;
 `;
 
-export default ({ iconSrc, height, width }) => {
-  const PriceAndCount = (
-    <>
+export default ({ customCartIcon }) => {
+
+  let Icon = customCartIcon ? customCartIcon : (
+    <TiShoppingCart
+      sx={{
+        height: "2em",
+        width: "2em"
+      }}
+    />
+  );
+
+  return (
+    <CartButton className="snipcart-checkout">
+      {Icon}
       <span
         sx={{
           color: "black",
@@ -37,30 +48,6 @@ export default ({ iconSrc, height, width }) => {
         }}
         className="snipcart-total-price"
       ></span>
-    </>
-  );
-
-  let Icon = iconSrc ? (
-    <img
-      sx={{
-        height: { height },
-        width: { width }
-      }}
-      src={iconSrc}
-    />
-  ) : (
-    <CartSvg
-      sx={{
-        height: "2em",
-        width: "2em"
-      }}
-    />
-  );
-
-  return (
-    <CartButton className="snipcart-checkout">
-      {Icon}
-      {PriceAndCount}
     </CartButton>
   );
 };
