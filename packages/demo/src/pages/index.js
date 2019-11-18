@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import styled from "@emotion/styled";
-import { Cart } from "gatsby-theme-snipcart";
+import { Cart, BuyButton } from "gatsby-theme-snipcart";
 import Layout from "../components/Layout";
 import { useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
@@ -124,7 +124,18 @@ const Index = () => {
                   alt={node.defaultProductVariant.title}
                 />
               </ImageContainer>
-              {/* <BuyButton /> */}
+              <BuyButton
+                itemId={node.id}
+                text="Buy Now"
+                itemPrice={25.00}
+                image={node.defaultProductVariant.images[0].asset.src}
+                itemTitle={node.title}
+                itemDescription={node.blurb.en}
+                itemUrl="https://localhost:8001"
+                itemPath="/#/"
+                isStackable={true}
+                isTaxIncluded={true}
+              />
             </ProductCard>
           ))}
         </Main>
@@ -154,6 +165,7 @@ export const query = graphql`
             images {
               asset {
                 fluid {
+                  src
                   ...GatsbySanityImageFluid
                 }
               }

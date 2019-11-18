@@ -10,7 +10,8 @@ module.exports = {
         {
             resolve: 'gatsby-theme-snipcart',
             options: {
-                SNIPCART_API_KEY: 'S_Y2MzMDIwYWEtMDY3ZC00ZWI4LTk0NGEtMGNiMTVjZjI5ZTA4NjM3MDkzOTYxMTcwNDUxOTQ4'
+                SNIPCART_API_KEY: 'S_Y2MzMDIwYWEtMDY3ZC00ZWI4LTk0NGEtMGNiMTVjZjI5ZTA4NjM3MDkzOTYxMTcwNDUxOTQ4',
+                version: 'v2'
             }
         },
         {

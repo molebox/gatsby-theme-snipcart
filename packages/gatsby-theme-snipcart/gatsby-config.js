@@ -1,6 +1,6 @@
 
 module.exports = (options) => {
-    const {SNIPCART_API_KEY} = options;
+    const {SNIPCART_API_KEY, version} = options;
 
     return {
         plugins: [

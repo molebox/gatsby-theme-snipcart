@@ -10,6 +10,7 @@ const Button = styled.button`
      box-sizing: border-box;
      text-align:center;
      transition: all 0.2s;
+    cursor: pointer;
 
     @media all and (max-width:30em){
          & {
