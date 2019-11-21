@@ -7,9 +7,8 @@ import { useStaticQuery } from "gatsby";
 // import Img from "gatsby-image";
 
 const Container = styled.div`
-  height: 110vh;
-  // width: 100%;
-  // background: #262626;
+  height: 100%;
+  width: 100%;
 `;
 
 const Header = styled.header`
@@ -18,18 +17,24 @@ const Header = styled.header`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  box-shadow: 1px 1px 10px 3px hsla(0, 0%, 0%, 0.21);
 `;
 
 const Main = styled.section`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  // grid-template-rows: auto 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr;
   grid-gap: 2em;
   margin: 3em;
+
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // margin: 2em auto;
+  // align-items: center;
 `;
 
 const Title = styled.h1`
-  color: #011638;
   padding: 1em;
 `;
 
@@ -80,10 +85,14 @@ const Index = () => {
 
   return (
     <Layout>
-      <Container>
+      <Container
+        sx={{
+          backgroundColor: "CAMBRIDGE_BLUE"
+        }}
+      >
         <Header
           sx={{
-            backgroundColor: "lightGrey",
+            backgroundColor: "PLATINUM",
             fontFamily: "heading",
             fontWeight: "body",
             color: "black",
@@ -96,6 +105,7 @@ const Index = () => {
         <Main>
           {productsList.map(({ node }) => (
             <ProductCard
+              key={node.title}
               imageSrc={node.defaultProductVariant.images[0].asset.fluid}
               title={node.defaultProductVariant.title}
               description={node.blurb.en}

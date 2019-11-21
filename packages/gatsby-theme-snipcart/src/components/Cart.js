@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import styled from "@emotion/styled";
-import { TiShoppingCart } from "react-icons/ti";
+import { AiOutlineShopping } from "react-icons/ai";
 
 const Container = styled.div`
   display: flex;
@@ -27,43 +27,59 @@ const CartButton = styled.button`
   -ms-user-select: none;
 `;
 
+const CartBox = styled.div`
+  width: 4em;
+  height: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default ({ customCartIcon }) => {
   let Icon = customCartIcon ? (
     customCartIcon
   ) : (
-    <TiShoppingCart
+    <CartBox
       sx={{
-        height: "2em",
-        width: "2em"
+        backgroundColor: "black"
       }}
-    />
+    >
+      <AiOutlineShopping
+        sx={{
+          height: "2.7em",
+          width: "2.7em",
+          color: "white",
+          marginBottom: "0.5em"
+        }}
+      />
+    </CartBox>
   );
 
   return (
     <Container>
-    <CartButton className="snipcart-checkout">
-      {Icon}
-      <Details>
-      <span
-        sx={{
-          color: "black",
-          fontWeight: "heading",
-          marginTop: "0.7em"
-        }}
-        className="snipcart-items-count"
-      ></span>
-      <span
+      <CartButton className="snipcart-checkout">
+        {Icon}
+        <Details>
+          <span
+            sx={{
+              color: "black",
+              fontWeight: "heading",
+              marginTop: "0.7em"
+            }}
+            className="snipcart-items-count"
+          ></span>
+          {/* <span
         sx={{
           color: "black",
           fontWeight: "heading",
           marginTop: "0.7em",
-          marginBottom: "0.5em"
+          marginBottom: "0.5em",
+          marginLeft: '1em'
         }}
         className="snipcart-total-price"
-      ></span>
-      </Details>
-    </CartButton>
+      ></span> */}
+        </Details>
+      </CartButton>
     </Container>
-
   );
 };
