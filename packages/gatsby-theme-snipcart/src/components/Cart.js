@@ -3,6 +3,16 @@ import { jsx } from "theme-ui";
 import styled from "@emotion/styled";
 import { TiShoppingCart } from "react-icons/ti";
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Details = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const CartButton = styled.button`
   background: none;
   border: 0;
@@ -18,8 +28,9 @@ const CartButton = styled.button`
 `;
 
 export default ({ customCartIcon }) => {
-
-  let Icon = customCartIcon ? customCartIcon : (
+  let Icon = customCartIcon ? (
+    customCartIcon
+  ) : (
     <TiShoppingCart
       sx={{
         height: "2em",
@@ -29,12 +40,14 @@ export default ({ customCartIcon }) => {
   );
 
   return (
+    <Container>
     <CartButton className="snipcart-checkout">
       {Icon}
+      <Details>
       <span
         sx={{
           color: "black",
-          fontWeight: 'heading',
+          fontWeight: "heading",
           marginTop: "0.7em"
         }}
         className="snipcart-items-count"
@@ -42,12 +55,15 @@ export default ({ customCartIcon }) => {
       <span
         sx={{
           color: "black",
-          fontWeight: 'heading',
+          fontWeight: "heading",
           marginTop: "0.7em",
           marginBottom: "0.5em"
         }}
         className="snipcart-total-price"
       ></span>
+      </Details>
     </CartButton>
+    </Container>
+
   );
 };

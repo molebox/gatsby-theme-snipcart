@@ -16,9 +16,11 @@
     "gatsby": "^2.17.15",
     "gatsby-image": "^2.2.33",
     "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-plugin-sharp": "^2.3.2",
     "gatsby-plugin-theme-ui": "^0.2.43",
     "gatsby-source-sanity": "^5.0.4",
     "gatsby-theme-snipcart": "*",
+    "gatsby-transformer-sharp": "^2.3.5",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "theme-ui": "^0.2.46"
